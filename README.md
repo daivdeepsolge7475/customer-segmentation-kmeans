@@ -18,6 +18,10 @@ The application allows users to enter:
 and predicts the customer's segment along with a business recommendation.
 
 ---
+## Demo link of project
+
+Demo link: https://customer-segmentation-kmeans-nqkzz6dfy8ibu26h76hqzl.streamlit.app/
+
 
 ## 🎯 Problem Statement
 
@@ -123,7 +127,7 @@ The application allows users to:
 ### Clone Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/customer-segmentation-kmeans.git
+git clone https://github.com/daivdeepsolge7475/customer-segmentation-kmeans.git
 ```
 
 ### Move into Project Folder
@@ -158,23 +162,6 @@ Customer-Segmentation-KMeans/
 ├── requirements.txt
 ├── README.md
 └── .gitignore
-```
-
----
-
-## 📷 Screenshots
-
-### Customer Segmentation Dashboard
-
-(Add Screenshot Here)
-
-### K-Means Cluster Visualization
-
-(Add Screenshot Here)
-
-### Elbow Method
-
-(Add Screenshot Here)
 
 ---
 
