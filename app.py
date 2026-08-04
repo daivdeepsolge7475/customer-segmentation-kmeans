@@ -2,24 +2,40 @@ import streamlit as st
 import joblib
 import numpy as np
 
+# ---------------------------
+# Page Configuration
+# ---------------------------
+st.set_page_config(
+    page_title="Customer Segmentation",
+    page_icon="🛍",
+    layout="wide"
+)
+
+# ---------------------------
+# Sidebar
+# ---------------------------
 st.sidebar.title("About")
 
 st.sidebar.write("""
 This application segments mall customers
 using the K-Means Clustering algorithm.
 
-Developer:
-Daivdeep Solge
+**Developer:** Daivdeep Solge
 """)
 
-
-# Load model
+# ---------------------------
+# Load Model
+# ---------------------------
 model = joblib.load("kmeans_model.pkl")
 
-st.set_page_config(page_title="Customer Segmentation")
-
+# ---------------------------
+# Title
+# ---------------------------
 st.title("🛍 Customer Segmentation using K-Means")
 
+# ---------------------------
+# Inputs
+# ---------------------------
 income = st.number_input(
     "Annual Income (k$)",
     min_value=0.0,
@@ -33,13 +49,10 @@ score = st.number_input(
     value=50.0
 )
 
-if st.button("Predict Customer Segment"):
-
-    customer = np.array([[income, score]])
-
-    cluster = model.predict(customer)[0]
-
-    segment_names = {
+# ---------------------------
+# Dictionaries
+# ---------------------------
+segment_names = {
     0: "🛒 Regular Customer",
     1: "💎 High Income - High Spending",
     2: "💰 Low Income - Low Spending",
@@ -47,9 +60,7 @@ if st.button("Predict Customer Segment"):
     4: "🌟 Low Income - High Spending"
 }
 
-st.success(f"Customer Segment: {segment_names[cluster]}")
-
-recommendation = {
+recommendations = {
     0: "Offer loyalty programs and seasonal discounts.",
     1: "Provide VIP membership and premium products.",
     2: "Offer budget-friendly products and discounts.",
@@ -57,7 +68,19 @@ recommendation = {
     4: "Retain them using reward points and cashback offers."
 }
 
-st.info(recommendation[cluster])
+# ---------------------------
+# Prediction
+# ---------------------------
+if st.button("Predict Customer Segment"):
 
-st.markdown("---")
-st.caption("Developed by Daivdeep Solge | Machine Learning Project")
+    customer = np.array([[income, score]])
+
+    cluster = model.predict(customer)[0]
+
+    st.success(
+        f"Customer Segment: {segment_names.get(cluster, f'Cluster {cluster}')}"
+    )
+
+    st.info(
+        recommendations.get(cluster, "No recommendation available.")
+    )
