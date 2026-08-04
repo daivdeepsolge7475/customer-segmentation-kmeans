@@ -155,4 +155,11 @@ plt.legend()
 
 plt.show()
 
+import joblib
+
+joblib.dump(kmeans, "kmeans_model.pkl")
+
+print("\n===== Model Saved Successfully =====")
+print("File: kmeans_model.pkl")
+
 
